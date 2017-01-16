@@ -7,10 +7,15 @@ import lombok.Setter;
  */
 @Setter
 public class ShakespearQuoter implements Quoter {
+
+    @InjectRandomInt(min = 3, max = 7)
+    private int repeat;
     private String message;
 
     @Override
     public void sayQuote() {
-        System.out.println(message);
+        for (int i = 0; i < repeat; i++) {
+            System.out.println(message);
+        }
     }
 }
