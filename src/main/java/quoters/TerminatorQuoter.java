@@ -4,7 +4,9 @@ package quoters;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Scope;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
@@ -19,6 +21,8 @@ import java.util.List;
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 @Film
+@Order(2)
+//@DependsOn("shakespearQuoter")
 public class TerminatorQuoter implements Quoter {
 
     private List<String> messages;

@@ -6,6 +6,12 @@
 
     <context:component-scan base-package="quoters"/>
 
+    <bean class="java.awt.Color" >
+        <constructor-arg index="0" type="float" value="0"/>
+        <constructor-arg index="1" type="float" value="0"/>
+        <constructor-arg index="2" type="float" value="0"/>
+    </bean>
+
 
 
 
