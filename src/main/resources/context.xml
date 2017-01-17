@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="integerFactory" class="quoters.bpp.IntegerFactory">
+        <constructor-arg value="200"/>
+    </bean>
+
+    <bean id="randomInt" class="java.lang.Integer" factory-bean="integerFactory" factory-method="getRandomInt"/>
+
+
+    <context:property-placeholder location="classpath:application.properties, file:c:\\:prod.properties" ignore-resource-not-found="true"/>
 
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <bean class="quoters.bpp.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean class="quoters.bpp.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
 
-    <bean id="anotherQuote" class="java.lang.String">
+    <bean id="anotherQuote" class="java.lang.String" >
         <constructor-arg value="Come with me if you want to live"/>
     </bean>
 
-    <bean id="robot" class="quoters.TalkingRobotImpl">
+    <bean id="robot" class="quoters.TalkingRobotImpl" >
         <property name="quoters">
             <list>
                <ref bean="shakespearQuoter"/>
@@ -19,10 +30,10 @@
         </property>
     </bean>
     <bean id="shakespearQuoter" class="quoters.ShakespearQuoter">
-        <property name="message" value="2 b || ! 2 b"/>
+        <property name="message" value="${shake}"/>
     </bean>
 
-    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter">
+    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter" scope="prototype" destroy-method="killAll">
         <property name="messages">
             <list>
                 <value>I'll be back</value>
