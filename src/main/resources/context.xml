@@ -13,7 +13,8 @@
 
     <context:property-placeholder location="classpath:application.properties, file:c:\\:prod.properties" ignore-resource-not-found="true"/>
 
-    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <context:annotation-config/>
+
     <bean class="quoters.bpp.InjectRandomIntAnnotationBeanPostProcessor"/>
     <bean class="quoters.bpp.BeanDefinitionAnalyzerBeanFactoryPostProcessor"/>
 
@@ -30,7 +31,7 @@
         </property>
     </bean>
     <bean id="shakespearQuoter" class="quoters.ShakespearQuoter">
-        <property name="message" value="${shake}"/>
+
     </bean>
 
     <bean id="terminatorQuoter" class="quoters.TerminatorQuoter" scope="prototype" destroy-method="killAll">
