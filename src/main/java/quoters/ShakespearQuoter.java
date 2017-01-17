@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Setter
 @Component
+@Book
 public class ShakespearQuoter implements Quoter {
 
     @InjectRandomInt(min = 3, max = 7)
