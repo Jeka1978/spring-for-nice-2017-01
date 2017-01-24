@@ -28,7 +28,8 @@ public class SecuredServiceTest {
 
     @Test
     public void doWork() throws Exception {
-        securedService.doWork();
+        System.out.println(123);
+//        securedService.doWork();
     }
 
 }
