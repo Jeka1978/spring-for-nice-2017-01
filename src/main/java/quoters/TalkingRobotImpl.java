@@ -16,9 +16,14 @@ import java.util.List;
 public class TalkingRobotImpl implements TalkingRobot {
     @Autowired
     private List<Quoter> quoters;
+
+    @Autowired
+    private StamClass stamClass;
+
     @Override
     @PostConstruct
     public void talk() {
        quoters.forEach(Quoter::sayQuote);
+        stamClass.sayName();
     }
 }
